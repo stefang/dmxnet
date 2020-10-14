@@ -10,6 +10,8 @@ const LoggingBase = require('@hibas123/nodelogging').LoggingBase;
 // Init Logger
 const log = new LoggingBase({
   name: 'dmxnet',
+  files: false,
+  console: false
 });
 
 // ArtDMX Header for jspack
