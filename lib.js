@@ -6,13 +6,13 @@ var jspack = require('jspack').jspack;
 const os = require('os');
 const Netmask = require('netmask').Netmask;
 // Require Logging
-const LoggingBase = require('@hibas123/nodelogging').LoggingBase;
+// const LoggingBase = require('@hibas123/nodelogging').LoggingBase;
 // Init Logger
-const log = new LoggingBase({
-  name: 'dmxnet',
-  files: false,
-  console: false
-});
+// const log = new LoggingBase({
+//   name: 'dmxnet',
+//   files: false,
+//   console: false
+// });
 
 // ArtDMX Header for jspack
 var ArtDmxHeaderFormat = '!7sBHHBBBBH';
@@ -37,17 +37,17 @@ class dmxnet {
     this.hosts = options.hosts || []
     // // Set log levels
     // if (this.verbose > 0) {
-    //   log.options.files = false;
-    //   log.options.console = true;
+    //   // log.options.files = false;
+    //   // log.options.console = true;
     //   if (this.verbose > 1) {
-    //     log.options.files = true;
-    //     log.options.console = true;      }
+    //     // log.options.files = true;
+    //     // log.options.console = true;      }
     // } else {
-    //   log.options.files = false;
-    //   log.options.console = false;
+    //   // log.options.files = false;
+    //   // log.options.console = false;
     // }
     // Log started information
-    log.log('started with options ' + JSON.stringify(options));
+    // // log.log('started with options ' + JSON.stringify(options));
 
     // Get all network interfaces
     this.interfaces = os.networkInterfaces();
@@ -69,7 +69,7 @@ class dmxnet {
         }
       });
     });
-    log.debug('Interfaces: ' + JSON.stringify(this.ip4));
+    // log.debug('Interfaces: ' + JSON.stringify(this.ip4));
     // init artPollReplyCount
     this.artPollReplyCount = 0;
     // Array containing reference to foreign controllers
@@ -102,7 +102,7 @@ class dmxnet {
     });
     // Start listening
     this.listener4.bind(this.port);
-    log.log('Listening on port ' + this.port);
+    // log.log('Listening on port ' + this.port);
     // Open Socket for sending broadcast data
     this.socket = dgram.createSocket('udp4');
     this.socket.bind(() => {
@@ -112,7 +112,7 @@ class dmxnet {
     // Periodically check Controllers
     setInterval(() => {
       if (this.controllers) {
-        log.debug('Check controller alive, count ' + this.controllers.length);
+        // log.debug('Check controller alive, count ' + this.controllers.length);
         for (var index = 0; index < this.controllers.length; index++) {
           if ((new Date().getTime() -
               new Date(this.controllers[index].last_poll).getTime()) >
@@ -155,7 +155,7 @@ class dmxnet {
    * Builds and sends an ArtPollReply-Packet
    */
   ArtPollReply() {
-    log.debug('Send ArtPollReply');
+    // log.debug('Send ArtPollReply');
 
     this.ip4.forEach((ip) => {
       // BindIndex handles all the different "instance".
@@ -214,7 +214,7 @@ class dmxnet {
         client.send(udppacket, 0, udppacket.length, 6454, broadcastip,
           (err) => {
             if (err) throw err;
-            log.log('ArtPollReply frame sent');
+            // log.log('ArtPollReply frame sent');
           });
       });
       // Send one package for every receiver
@@ -263,7 +263,7 @@ class dmxnet {
         client.send(udppacket, 0, udppacket.length, 6454, broadcastip,
           (err) => {
             if (err) throw err;
-            log.log('ArtPollReply frame sent');
+            // log.log('ArtPollReply frame sent');
           });
       });
       if ((this.senders.length + this.receivers.length) < 1) {
@@ -301,13 +301,13 @@ class dmxnet {
             // BindIndex, Status2
             1, 0b00001110,
           ]));
-        log.debug('Packet content: ' + udppacket.toString('hex'));
+        // log.debug('Packet content: ' + udppacket.toString('hex'));
         // Send UDP
         var client = this.socket;
         client.send(udppacket, 0, udppacket.length, 6454, broadcastip,
           (err) => {
             if (err) throw err;
-            log.log('ArtPollReply frame sent');
+            // log.log('ArtPollReply frame sent');
           });
       }
     });
@@ -357,10 +357,10 @@ class sender {
     if ((this.net < 0) || (this.subnet < 0) || (this.universe < 0)) {
       throw new Error('Subnet, Net or Universe must be 0 or bigger!');
     }
-    if (this.verbose > 0) {
-      log.log('new dmxnet sender started with params: ' +
-        JSON.stringify(options));
-    }
+    // if (this.verbose > 0) {
+    //   // log.log('new dmxnet sender started with params: ' +
+    //     JSON.stringify(options));
+    // }
     // init dmx-value array
     this.values = [];
     // fill all 512 channels
@@ -417,13 +417,13 @@ class sender {
       // Increase Sequence Counter
       this.ArtDmxSeq++;
 
-      log.debug('Packet content: ' + udppacket.toString('hex'));
+      // log.debug('Packet content: ' + udppacket.toString('hex'));
       // Send UDP
       var client = this.socket;
       client.send(udppacket, 0, udppacket.length, this.port, this.ip,
         (err) => {
           if (err) throw err;
-          log.log('ArtDMX frame sent to ' + this.ip + ':' + this.port);
+          // log.log('ArtDMX frame sent to ' + this.ip + ':' + this.port);
         });
     }
   }
@@ -569,10 +569,10 @@ class receiver extends EventEmitter {
     if ((this.net < 0) || (this.subnet < 0) || (this.universe < 0)) {
       throw new Error('Subnet, Net or Universe must be 0 or bigger!');
     }
-    if (this.verbose > 0) {
-      log.log('new dmxnet sender started with params: ' +
-        JSON.stringify(options));
-    }
+    // if (this.verbose > 0) {
+    //   // log.log('new dmxnet sender started with params: ' +
+    //     JSON.stringify(options));
+    // }
     // init dmx-value array
     this.values = [];
     // fill all 512 channels
@@ -601,46 +601,46 @@ class receiver extends EventEmitter {
 
 // Parser & receiver
 var dataParser = function (msg, rinfo, parent) {
-  log.debug(`got UDP from ${rinfo.address}:${rinfo.port}`);
+  // log.debug(`got UDP from ${rinfo.address}:${rinfo.port}`);
   if (rinfo.size < 10) {
-    log.debug('Payload to short');
+    // log.debug('Payload to short');
     return;
   }
   // Check first 8 bytes for the "Art-Net" - String
   if (String(jspack.Unpack('!8s', msg)) !== 'Art-Net\u0000') {
-    log.debug('Invalid header');
+    // log.debug('Invalid header');
     return;
   }
   var opcode = parseInt(jspack.Unpack('B', msg, 8), 10);
   opcode += parseInt(jspack.Unpack('B', msg, 9), 10) * 256;
   if (!opcode || opcode === 0) {
-    log.debug('Invalid OpCode');
+    // log.debug('Invalid OpCode');
     return;
   }
   switch (opcode) {
     case 0x5000:
-      log.debug('detected ArtDMX');
+      // log.debug('detected ArtDMX');
       var universe = parseInt(jspack.Unpack('H', msg, 14), 10);
       var data = [];
       for (var ch = 1; ch <= msg.length - 18; ch++) {
         data.push(msg.readUInt8(ch + 17, true));
       }
-      log.debug('Received frame for SubUniNet 0x' + universe.toString(16));
+      // log.debug('Received frame for SubUniNet 0x' + universe.toString(16));
       if (parent.receiversSubUni[universe]) {
         parent.receiversSubUni[universe].receive(data);
       }
       break;
     case 0x2000:
       if (rinfo.size < 14) {
-        log.debug('ArtPoll to small');
+        // log.debug('ArtPoll to small');
         return;
       }
-      log.debug('detected ArtPoll');
+      // log.debug('detected ArtPoll');
       // Parse Protocol version
       var proto = parseInt(jspack.Unpack('B', msg, 10), 10);
       proto += parseInt(jspack.Unpack('B', msg, 11), 10) * 256;
       if (!proto || proto < 14) {
-        log.debug('Invalid OpCode');
+        // log.debug('Invalid OpCode');
         return;
       }
       // Parse TalkToMe
@@ -668,14 +668,14 @@ var dataParser = function (msg, rinfo, parent) {
         parent.controllers.push(ctrl);
       }
       parent.ArtPollReply();
-      log.debug('Controllers: ' + JSON.stringify(parent.controllers));
+      // log.debug('Controllers: ' + JSON.stringify(parent.controllers));
       break;
     case 0x2100:
       // ToDo
-      log.debug('detected ArtPollReply');
+      // log.debug('detected ArtPollReply');
       break;
     default:
-      log.debug('OpCode not implemented');
+      // log.debug('OpCode not implemented');
   }
 
 };
