@@ -1,6 +1,6 @@
 {
   "name": "@stefang/dmxnet",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Fork of the ArtNet-DMX-sender and receiver for nodejs for WtC",
   "main": "lib.js",
   "scripts": {
