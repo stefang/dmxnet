@@ -37,12 +37,14 @@ class dmxnet {
     this.hosts = options.hosts || []
     // Set log levels
     if (this.verbose > 0) {
-      // ToDo: Set Log Level
+      log.options.files = false;
+      log.options.console = true;
       if (this.verbose > 1) {
-        // ToDo: Set Log Level Debug
-      }
+        log.options.files = true;
+        log.options.console = true;      }
     } else {
-      // ToDo: Set Log Level
+      log.options.files = false;
+      log.options.console = false;
     }
     // Log started information
     log.log('started with options ' + JSON.stringify(options));
