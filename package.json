@@ -11,7 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stefang/dmxnet.git"
+    "url": "git://github.com/stefang/dmxnet.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
   },
   "keywords": [
     "artnet",
