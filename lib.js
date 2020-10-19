@@ -35,17 +35,17 @@ class dmxnet {
     this.lName = options.lName ||
       'dmxnet - OpenSource ArtNet Transceiver'; // Longname
     this.hosts = options.hosts || []
-    // Set log levels
-    if (this.verbose > 0) {
-      log.options.files = false;
-      log.options.console = true;
-      if (this.verbose > 1) {
-        log.options.files = true;
-        log.options.console = true;      }
-    } else {
-      log.options.files = false;
-      log.options.console = false;
-    }
+    // // Set log levels
+    // if (this.verbose > 0) {
+    //   log.options.files = false;
+    //   log.options.console = true;
+    //   if (this.verbose > 1) {
+    //     log.options.files = true;
+    //     log.options.console = true;      }
+    // } else {
+    //   log.options.files = false;
+    //   log.options.console = false;
+    // }
     // Log started information
     log.log('started with options ' + JSON.stringify(options));
 
