@@ -1,5 +1,5 @@
 {
-  "name": "@stefang/dmxnet-nologging",
+  "name": "dmxnet-nologging",
   "version": "0.5.3",
   "description": "Fork of the ArtNet-DMX-sender and receiver for nodejs for with login disabled for installations",
   "main": "lib.js",
