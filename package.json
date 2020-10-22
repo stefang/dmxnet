@@ -1,7 +1,7 @@
 {
-  "name": "@stefang/dmxnet",
+  "name": "@stefang/dmxnet-nologging",
   "version": "0.5.3",
-  "description": "Fork of the ArtNet-DMX-sender and receiver for nodejs for WtC",
+  "description": "Fork of the ArtNet-DMX-sender and receiver for nodejs for with login disabled for installations",
   "main": "lib.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
@@ -12,9 +12,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/stefang/dmxnet.git"
-  },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
   },
   "keywords": [
     "artnet",

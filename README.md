@@ -1,16 +1,6 @@
-# dmxnet
-[![GitHub release](https://img.shields.io/github/release/margau/dmxnet.svg)](https://github.com/margau/dmxnet/releases)
-[![npm](https://img.shields.io/npm/v/dmxnet.svg)](https://www.npmjs.com/package/dmxnet)
-[![GitHub issues](https://img.shields.io/github/issues/margau/dmxnet.svg)](https://github.com/margau/dmxnet/issues)
-[![GitHub stars](https://img.shields.io/github/stars/margau/dmxnet.svg)](https://github.com/margau/dmxnet/stargazers)
-[![GitHub license](https://img.shields.io/github/license/margau/dmxnet.svg)](https://github.com/margau/dmxnet/blob/master/LICENSE)
-[![GitHub last commit](https://img.shields.io/github/last-commit/margau/dmxnet.svg)](https://github.com/margau/dmxnet)
-[![Github All Releases](https://img.shields.io/github/downloads/margau/dmxnet/total.svg)](https://github.com/margau/dmxnet/releases)
-[![npm](https://img.shields.io/npm/dt/dmxnet.svg)](https://www.npmjs.com/package/dmxnet)
-[![Travis (.com)](https://img.shields.io/travis/com/margau/dmxnet.svg)](https://travis-ci.com/margau/dmxnet)
+# dmxnet-nologging
 
-dmxnet is an ArtNet-DMX-sender and receiver for nodejs,
-currently under heavy development!
+dmxnet-nologging is my fork of dmxnet, a temp fix for our CI system until I get time to properly submit the pull request.. which is an ArtNet-DMX-sender and receiver for nodejs, currently under heavy development!
 
 ## Features
 
@@ -20,47 +10,22 @@ currently under heavy development!
 - Use multiple receivers with different Net, Subnet and Universe
 - Receive ArtPoll and send ArtPollReply (dmxnet is found by other software, e.g. [DMX-Workshop](https://art-net.org.uk/resources/dmx-workshop/))
 
+## Forked from 
+https://github.com/margau/dmxnet
+
 ## Contributors
 See https://github.com/margau/dmxnet/graphs/contributors
 
 ## Changelog
-**v0.5.0**
-Dependency Updates, add hosts option (thanks to @gaelhuot)
-
-**v0.4.0**
-Added support for receiving ArtDMX packets.
-
-**v0.3.0**
-Added support for base_refresh_interval, add sender.reset()
-
-**v0.2.0**
-
-Added support for receiving ArtPoll and sending ArtPollReply.
-
-**v0.1.3**
-Improved logging trough use of simple-node-logger
-
-**v0.1.2**
-Added subuni option to sender
-
-**v0.1.1**
-Added prepare channel
-
-**v0.1.0**
-Initital Release, sending ArtDMX working
+**v0.5.3**
+Removed Logging due to no way of disabling the file system log file creation in the options. For installations this would eventually fill up the show system storage.
 
 ## Installation
 
 **How to install latest release:**
 
 ```bash
-npm install dmxnet
-```
-
-**How to install current development version:**
-
-```bash
-npm install git+https://git@github.com/margau/dmxnet.git
+npm install @stefang/dmxnet-nologging
 ```
 
 ## Usage
@@ -202,15 +167,7 @@ The receiver is emits an "data"-event each time new values have arrived.
 
 The current values are stored inside the `receiver.values`-array for polling.
 
-## ToDo:
-
-- Act as Controller (Sending ArtPoll, Receiving ArtPollReply)
-- Maybe support sACN?
-
-
 ### Please feel free to contribute!
-
-
 
 ## Credits
 
